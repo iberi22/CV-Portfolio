@@ -90,21 +90,7 @@ To use this template for your own portfolio, follow these steps. The recommended
 2. **Customize `cv.yaml`**: Edit `src/data/cv.yaml` with your information.
 3. **Add Profile Picture**: Place your profile picture (e.g., `profile.png`) in the `public/` directory and update the `profile_picture` path in your `cv.yaml`.
 
-### Step 3: Update `.gitignore`
-
-This is a critical step. To allow your `cv.yaml` and profile picture to be pushed to your private repository for deployment, you must:
-
-1. Open the `.gitignore` file.
-2. **Delete** the following lines:
-
-    ```gitignore
-    src/data/cv.yaml
-    profile.png
-    ```
-
-3. Save the file. Now you can commit your personal data safely to your **private** repository.
-
-### Step 4: Deploy Your Site
+### Step 3: Deploy Your Site
 
 With your content and `.gitignore` updated, you can deploy your site. The recommended host is **Vercel** for its simplicity and seamless integration with GitHub.
 
