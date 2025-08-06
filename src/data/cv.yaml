@@ -1,0 +1,94 @@
+personal_info:
+  name: "Your Full Name"
+  title: "Your Professional Title"
+  profile_picture: "/profile.example.png"  # Replace with your profile picture
+  contact:
+    email: "your.email@example.com"
+    phone: "+1 (123) 456-7890"  # Optional: Be cautious sharing this publicly.
+    location: "City, Country"
+    github_url: "https://github.com/yourusername"
+    github_user: "yourusername"
+    linkedin_url: "https://linkedin.com/in/yourprofile"  # Optional
+    website: "https://yourwebsite.com"  # Optional
+
+summary:
+  - "Brief professional summary point 1."
+  - "Brief professional summary point 2."
+  - "Brief professional summary point 3."
+
+professional_experience:
+  - company: "Company Name"
+    date: "Month YYYY - Present"
+    start_date: "YYYY-MM-DD"
+    end_date: "Present"  # or "YYYY-MM-DD"
+    position: "Your Job Title"
+    description:
+      - "Responsibility or achievement 1."
+      - "Responsibility or achievement 2."
+      - "Responsibility or achievement 3."
+
+  - company: "Previous Company"
+    date: "Month YYYY - Month YYYY"
+    start_date: "YYYY-MM-DD"
+    end_date: "YYYY-MM-DD"
+    position: "Your Previous Position"
+    description:
+      - "Responsibility or achievement 1."
+      - "Responsibility or achievement 2."
+      - "Responsibility or achievement 3."
+
+skills_and_interests:
+  - category: "Technical"
+    details: "List computer software and programming languages (e.g., Python, JavaScript, Astro, Biome)"
+  - category: "Languages"
+    details: "List foreign languages and your level of fluency (e.g., Spanish (Native), English (Fluent))"
+  - category: "Laboratory"
+    details: "List scientific / research lab techniques or tools [If Applicable]"
+  - category: "Interests"
+    details: "List activities you enjoy that may spark interview conversation"
+
+github_projects:
+  - title: "project-one"
+    description: "Brief description of your first project"
+    tech: "Technologies used in the project"
+    url: "https://github.com/yourusername/project-one"
+  - title: "project-two"
+    description: "Brief description of your second project"
+    tech: "Technologies used in the project"
+    url: "https://github.com/yourusername/project-two"
+
+education:
+  - institution: "University Name"
+    degree: "Degree, Concentration"
+    date: "Graduation Date"
+    gpa: "3.9/4.0" # Optional
+    thesis: "Your Thesis Title" # Optional
+    coursework: # Optional
+      - "Relevant Coursework 1"
+      - "Relevant Coursework 2"
+  - institution: "High School Name"
+    degree: "High School Diploma"
+    date: "Graduation Date"
+    description: "May include GPA, SAT/ACT scores, or academic honors." # Optional
+
+certifications:
+  - name: "Certification Name"
+    issuer: "Issuing Organization"
+    date: "Month Year"
+
+
+leadership_and_activities:
+  - organization: "Organization Name"
+    role: "Your Role (e.g., President, Team Lead)"
+    date: "Month Year - Month Year"
+    description:
+      - "Accomplishment or responsibility 1."
+      - "Accomplishment or responsibility 2."
+
+social_links:
+  - platform: "LinkedIn"
+    url: "https://linkedin.com/in/yourprofile"
+  - platform: "Twitter"
+    url: "https://twitter.com/yourhandle"
+  - platform: "Personal Website"
+    url: "https://yourwebsite.com"
