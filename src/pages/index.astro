@@ -1,0 +1,122 @@
+---
+import Certifications from "@/components/Certifications.astro"
+import Education from "@/components/Education.astro"
+import Experience from "@/components/Experience.astro"
+import Header from "@/components/Header.astro"
+import HarvardEducation from "@/components/harvard-original/HarvardEducation.astro"
+import HarvardExperience from "@/components/harvard-original/HarvardExperience.astro"
+import HarvardHeader from "@/components/harvard-original/HarvardHeader.astro"
+import HarvardLeadership from "@/components/harvard-original/HarvardLeadership.astro"
+import HarvardSkills from "@/components/harvard-original/HarvardSkills.astro"
+import LeadershipAndActivities from "@/components/LeadershipAndActivities.astro"
+import Projects from "@/components/Projects.astro"
+import SkillsAndInterests from "@/components/SkillsAndInterests.astro"
+import SocialLinks from "@/components/SocialLinks.astro"
+import Summary from "@/components/Summary.astro"
+import cv from "@/data/cv.yaml"
+import HarvardOriginalLayout from "@/layouts/HarvardOriginalLayout.astro"
+import Layout from "@/layouts/Layout.astro"
+import ThemeToggle from "@/components/ThemeToggle.astro"
+---
+
+<ThemeToggle />
+
+<!-- Default and Harvard Adapted Themes -->
+<div id="default-layout" style="display: none;">
+  <Layout title={`${cv.personal_info.name} - CV`}>
+    <Header personal_info={cv.personal_info} />
+    <main class="p-4 md:p-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2 space-y-8">
+          {cv.summary && <Summary summary={cv.summary} />}
+          {cv.professional_experience && <Experience experience={cv.professional_experience} />}
+          {cv.education && <Education education={cv.education} />}
+          {cv.skills_and_interests && <SkillsAndInterests skills_and_interests={cv.skills_and_interests} />}
+          {cv.github_projects && <Projects projects={cv.github_projects} github_url={cv.personal_info.contact.github_url} />}
+        </div>
+        <div class="space-y-8">
+          {cv.leadership_and_activities && <LeadershipAndActivities leadership_and_activities={cv.leadership_and_activities} />}
+          {cv.certifications && <Certifications certifications={cv.certifications} />}
+          {cv.social_links && <SocialLinks links={cv.social_links} />}
+        </div>
+      </div>
+    </main>
+  </Layout>
+</div>
+
+<!-- Harvard Original Theme -->
+<div id="harvard-original-layout" style="display: none;">
+  <HarvardOriginalLayout title={`${cv.personal_info.name} - CV`}>
+    <HarvardHeader personal_info={cv.personal_info} />
+    <main>
+      <HarvardEducation education={cv.education} />
+      <HarvardExperience experience={cv.professional_experience} />
+      <HarvardLeadership leadership_and_activities={cv.leadership_and_activities} />
+      <HarvardSkills skills_and_interests={cv.skills_and_interests} />
+    </main>
+  </HarvardOriginalLayout>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    const themeSwitcher = document.getElementById('theme-switcher');
+    const defaultLayout = document.getElementById('default-layout');
+    const harvardLayout = document.getElementById('harvard-original-layout');
+    const html = document.documentElement;
+
+    if (!themeSwitcher || !defaultLayout || !harvardLayout) {
+      console.error('Theme switcher or layout elements not found. Aborting theme setup.');
+      return;
+    }
+
+    const buttons = themeSwitcher.querySelectorAll('button');
+
+    function applyThemeAndLayout(theme) {
+      console.log(`--- Applying theme: ${theme} ---`);
+
+      // 1. Manage CSS classes on <html>
+      html.classList.remove('harvard-theme', 'harvard-original-theme');
+      if (theme === 'harvard-adapted') {
+        html.classList.add('harvard-theme');
+        console.log("CSS Class: 'harvard-theme' applied.");
+      } else if (theme === 'harvard-original') {
+        html.classList.add('harvard-original-theme');
+        console.log("CSS Class: 'harvard-original-theme' applied.");
+      } else {
+        console.log("CSS Class: No theme class applied (default).");
+      }
+
+      // 2. Manage layout visibility
+      const isHarvardOriginal = theme === 'harvard-original';
+      harvardLayout.style.display = isHarvardOriginal ? 'block' : 'none';
+      defaultLayout.style.display = isHarvardOriginal ? 'none' : 'block';
+      console.log(`Layout visibility: Harvard Original=${harvardLayout.style.display}, Default=${defaultLayout.style.display}`);
+
+      // 3. Update active button state
+      buttons.forEach(button => {
+        button.classList.toggle('active', button.dataset.theme === theme);
+      });
+      console.log('UI: Active button states updated.');
+
+      // 4. Persist theme
+      localStorage.setItem('theme', theme);
+      console.log(`Storage: Theme '${theme}' saved to localStorage.`);
+    }
+
+    // Add click listeners
+    buttons.forEach(button => {
+      button.addEventListener('click', function () {
+        const selectedTheme = this.dataset.theme;
+        console.log(`EVENT: Click detected on button for theme '${selectedTheme}'`);
+        if (selectedTheme) {
+          applyThemeAndLayout(selectedTheme);
+        }
+      });
+    });
+
+    // Initial theme setup on page load
+    const savedTheme = localStorage.getItem('theme') || 'default';
+    console.log(`INIT: Page loaded. Applying saved theme: '${savedTheme}'`);
+    applyThemeAndLayout(savedTheme);
+  });
+</script>

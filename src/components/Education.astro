@@ -1,0 +1,53 @@
+---
+import Section from "@/components/Section.astro"
+import type { Education } from "@/env.d.ts"
+
+interface Props {
+  education: Education[]
+}
+
+const { education } = Astro.props
+---
+
+<style>
+  :global(html.harvard-theme) .education-item {
+    border-color: var(--border-color);
+  }
+  :global(html.harvard-theme) .timeline-dot {
+    background-color: var(--border-color);
+  }
+  :global(html.harvard-theme) .education-item h3,
+  :global(html.harvard-theme) .education-item h4 {
+    color: var(--text-color);
+  }
+  :global(html.harvard-theme) .education-item p,
+  :global(html.harvard-theme) .education-item time,
+  :global(html.harvard-theme) .education-item li {
+    color: var(--text-secondary);
+  }
+</style>
+
+<Section title="Education">
+  <div class="space-y-6 p-5 summary-list">
+    {education.map(({ institution, degree, date, gpa, thesis, coursework, description }) => (
+      <div class="education-item">
+        <p class="date text-sm text-gray-500 dark:text-gray-400">{date}</p>
+        <h3 class="font-semibold text-lg text-gray-900 dark:text-white" set:html={institution}></h3>
+        <p class="text-md text-gray-700 dark:text-gray-300" set:html={degree}></p>
+        {gpa && <p class="text-sm text-gray-600 dark:text-gray-400">GPA: {gpa}</p>}
+        {thesis && <p class="text-sm text-gray-600 dark:text-gray-400">Thesis: <span set:html={thesis}></span></p>}
+        {coursework && coursework.length > 0 && (
+          <div class="mt-2">
+            <h4 class="font-semibold text-gray-800 dark:text-gray-200">Relevant Coursework:</h4>
+            <ul class="summary-list list-disc mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-300">
+              {coursework.map((course) => (
+                <li set:html={course}></li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {description && <p class="mt-2 text-sm text-gray-600 dark:text-gray-300" set:html={description}></p>}
+      </div>
+    ))}
+  </div>
+</Section>

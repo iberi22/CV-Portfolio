@@ -1,0 +1,18 @@
+---
+import type { Certification } from "@/env.d.ts"
+
+interface Props {
+  certifications: Certification[]
+}
+
+const props = Astro.props as Props
+---
+
+<div class="section">
+    <h2 class="section-title">Certifications</h2>
+    <ul class="summary-list">
+        {props.certifications.map(cert => (
+            <li><strong>{cert.name}</strong> - {cert.issuer} ({cert.date})</li>
+        ))}
+    </ul>
+</div>

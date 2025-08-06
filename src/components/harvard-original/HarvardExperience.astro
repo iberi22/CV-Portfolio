@@ -1,0 +1,30 @@
+---
+import type { ProfessionalExperience } from "@/env.d.ts"
+
+interface Props {
+  experience: ProfessionalExperience[]
+}
+
+const { experience } = Astro.props
+---
+
+<div class="section-header">Experience</div>
+
+{experience.map((job) => (
+  <div class="experience-item">
+    <div class="position-header">
+      <div class="organization-position">{job.company}</div>
+      <div class="location-date">{job.date}</div>
+    </div>
+    <div class="organization-position" set:html={job.position}></div>
+    {job.description && job.description.length > 0 && (
+      <div class="experience-description">
+        <ul>
+          {job.description.map((desc) => (
+            <li set:html={desc}></li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+))}

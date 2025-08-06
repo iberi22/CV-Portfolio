@@ -1,0 +1,18 @@
+---
+import type { Language } from "../env.d.ts"
+
+interface Props {
+  languages: Language[]
+}
+
+const { languages } = Astro.props
+---
+
+<div class="section">
+    <h2 class="section-title">Languages</h2>
+    <ul class="summary-list">
+        {languages.map(lang => (
+            <li>{lang.name} ({lang.proficiency})</li>
+        ))}
+    </ul>
+</div>

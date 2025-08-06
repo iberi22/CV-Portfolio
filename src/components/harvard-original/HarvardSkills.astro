@@ -1,0 +1,20 @@
+---
+import type { SkillsAndInterests } from "@/env.d.ts"
+
+interface Props {
+  skills_and_interests: SkillsAndInterests[]
+}
+
+const { skills_and_interests } = Astro.props
+---
+
+<div class="section-header">Skills & Interests</div>
+
+<div class="skills-section">
+  {skills_and_interests.map(({ category, details }) => (
+    <div class="skills-category">
+      <span class="skills-label" set:html={`${category}:`}></span>
+      <span class="skills-content" set:html={details}></span>
+    </div>
+  ))}
+</div>

@@ -1,0 +1,64 @@
+---
+import BrushIcon from "@/components/icons/BrushIcon.astro"
+import DocumentIcon from "@/components/icons/DocumentIcon.astro"
+import TextIcon from "@/components/icons/TextIcon.astro"
+---
+
+<div id="theme-switcher" class="print:hidden">
+  <button data-theme="default" title="Default Theme">
+    <BrushIcon />
+  </button>
+  <button data-theme="harvard-adapted" title="Harvard Adapted Theme">
+    <DocumentIcon />
+  </button>
+  <button data-theme="harvard-original" title="Harvard Original Theme">
+    <TextIcon />
+  </button>
+</div>
+
+<style>
+  #theme-switcher {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 50;
+    display: flex;
+    gap: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
+    padding: 0.3rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    backdrop-filter: blur(4px);
+  }
+
+  #theme-switcher button {
+    background-color: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.4rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    color: #111827; /* Set color for the icon to inherit */
+  }
+
+  #theme-switcher button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  #theme-switcher button.active {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  #theme-switcher svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor; /* Inherit color from parent button */
+    display: block;
+  }
+</style>
+
+<script>
+  // All logic is now handled in pages/index.astro to avoid conflicts.
+</script>

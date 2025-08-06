@@ -1,0 +1,156 @@
+---
+import "../styles/global.css"
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<style is:global>
+  .harvard-original-theme {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --text-secondary: #000000;
+    --border-color: #000000;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.4;
+  }
+
+  .harvard-original-theme body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 11pt;
+    margin: 0;
+    padding: 0;
+  }
+
+  .harvard-original-theme .container {
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.75in;
+    background: white;
+    min-height: 11in;
+  }
+
+  .harvard-original-theme .header-section {
+    text-align: center;
+    margin-bottom: 1.5em;
+    border-bottom: none;
+  }
+
+  .harvard-original-theme .name {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+
+  .harvard-original-theme .contact-line {
+    font-size: 10pt;
+    margin-bottom: 0.3em;
+  }
+
+  .harvard-original-theme .section-header {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    margin: 1.5em 0 1em 0;
+    text-decoration: underline;
+  }
+
+  .harvard-original-theme .institution-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.3em;
+  }
+
+  .harvard-original-theme .institution-name {
+    font-weight: bold;
+    font-size: 11pt;
+  }
+
+  .harvard-original-theme .location-date {
+    font-size: 11pt;
+    text-align: right;
+  }
+
+  .harvard-original-theme .degree-info {
+    margin-bottom: 0.2em;
+    font-size: 11pt;
+  }
+
+  .harvard-original-theme .additional-info {
+    margin-bottom: 0.2em;
+    font-size: 11pt;
+  }
+
+  .harvard-original-theme .experience-item {
+    margin-bottom: 1.2em;
+  }
+
+  .harvard-original-theme .position-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.3em;
+  }
+
+  .harvard-original-theme .organization-position {
+    font-weight: bold;
+    font-size: 11pt;
+  }
+
+  .harvard-original-theme .experience-description {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .harvard-original-theme .experience-description ul {
+    margin: 0.3em 0;
+    padding-left: 1.2em;
+  }
+
+  .harvard-original-theme .experience-description li {
+    margin-bottom: 0.2em;
+    font-size: 11pt;
+  }
+
+  .harvard-original-theme .skills-section {
+    margin-bottom: 1em;
+  }
+
+  .harvard-original-theme .skills-category {
+    margin-bottom: 0.3em;
+  }
+
+  .harvard-original-theme .skills-label {
+    font-weight: bold;
+    display: inline;
+  }
+
+  .harvard-original-theme .skills-content {
+    display: inline;
+    margin-left: 0.3em;
+  }
+
+
+</style>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <slot />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+---
+import Section from "@/components/Section.astro"
+import type { SkillsAndInterests } from "@/env.d.ts"
+
+interface Props {
+  skills_and_interests: SkillsAndInterests[]
+}
+
+const { skills_and_interests } = Astro.props
+---
+
+<Section title="Skills & Interests">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-5 summary-list">
+    {skills_and_interests.map(({ category, details }) => (
+      <div class="skill-item p-4 border rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+        <h3 class="font-semibold text-lg text-gray-900 dark:text-white mb-2" set:html={category}></h3>
+        <p class="summary-list text-gray-700 dark:text-gray-300" set:html={details}></p>
+      </div>
+    ))}
+  </div>
+</Section>

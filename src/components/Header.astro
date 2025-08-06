@@ -1,0 +1,92 @@
+---
+import type { PersonalInfo } from "@/env.d.ts"
+
+interface Props {
+  personal_info: PersonalInfo
+}
+
+const { personal_info } = Astro.props
+
+const { name, title, profile_picture, contact } = personal_info
+---
+
+<style>
+    :global(html.harvard-theme) .profile-pic {
+        display: none;
+    }
+        .main-header {
+        position: relative; /* This is the fix */
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid var(--harvard-light);
+    }
+
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 3px solid var(--harvard-crimson);
+        margin-right: 30px;
+        object-fit: cover;
+    }
+
+    .header-text {
+        text-align: left;
+    }
+
+    h1 {
+        font-family: 'Libre Baskerville', serif;
+        font-weight: 700;
+        font-size: 2.2rem;
+        margin-bottom: 5px;
+        color: var(--harvard-dark);
+    }
+
+    .header-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        color: var(--text-secondary);
+    }
+
+    .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        font-size: 0.9rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+
+
+    .material-icons {
+        font-size: 16px;
+        color: var(--harvard-crimson);
+        vertical-align: middle;
+    }
+
+    
+</style>
+
+<header class="main-header">
+    <img src={profile_picture} alt={`${name} Profile Picture`} class="profile-pic">
+    <div class="header-text">
+        <h1 set:html={name}></h1>
+        <div class="header-subtitle" set:html={title}></div>
+        <div class="contact-info">
+            {contact.email && <div class="contact-item"><span class="material-icons">email</span> {contact.email}</div>}
+            {contact.phone && <div class="contact-item"><span class="material-icons">phone</span> {contact.phone}</div>}
+            {contact.location && <div class="contact-item"><span class="material-icons">location_on</span> <span set:html={contact.location}></span></div>}
+            {contact.github_url && <div class="contact-item"><a href={contact.github_url} target="_blank"><span class="material-icons">code</span> GitHub</a></div>}
+            {contact.linkedin_url && <div class="contact-item"><a href={contact.linkedin_url} target="_blank"><span class="material-icons">public</span> LinkedIn</a></div>}
+            {contact.website && <div class="contact-item"><a href={contact.website} target="_blank"><span class="material-icons">language</span> Website</a></div>}
+        </div>
+    </div>
+
+</header>

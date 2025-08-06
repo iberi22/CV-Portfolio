@@ -1,0 +1,47 @@
+---
+import type { GitHubProject, PersonalInfo } from "../env.d.ts"
+
+interface Props {
+  projects: GitHubProject[]
+  github_url: PersonalInfo["contact"]["github_url"]
+}
+
+const { projects, github_url } = Astro.props
+---
+
+<style>
+    .project {
+        margin-bottom: 15px;
+    }
+    .project-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    .project-description {
+        margin-bottom: 5px;
+    }
+    .project-tech {
+        font-style: italic;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+    .github-link {
+        display: inline-block;
+        margin-top: 10px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="section">
+    <h2 class="section-title">GitHub Projects</h2>
+    <div class="p-5 space-y-8 summary-list">
+        {projects.map(project => (
+            <div class="project">
+                <div class="project-title"><a href={project.url} target="_blank">{project.title}</a></div>
+                <div class="project-description">{project.description}</div>
+                <div class="project-tech">{project.tech}</div>
+            </div>
+        ))}
+        {github_url && <a href={github_url} target="_blank" class="github-link">View Full GitHub Profile</a>}
+    </div>
+</div>

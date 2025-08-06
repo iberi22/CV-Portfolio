@@ -1,0 +1,44 @@
+---
+import Section from "@/components/Section.astro"
+import type { LeadershipAndActivities } from "@/env.d.ts"
+
+interface Props {
+  leadership_and_activities: LeadershipAndActivities[]
+}
+
+const { leadership_and_activities } = Astro.props
+---
+
+<style>
+  :global(html.harvard-theme) .activity-item {
+    border-color: var(--border-color);
+  }
+  :global(html.harvard-theme) .timeline-dot {
+    background-color: var(--border-color);
+  }
+  :global(html.harvard-theme) .activity-item h3 {
+    color: var(--text-color);
+  }
+  :global(html.harvard-theme) .activity-item time,
+  :global(html.harvard-theme) .activity-item li {
+    color: var(--text-secondary);
+  }
+</style>
+
+<Section title="Leadership & Activities">
+  <div class="space-y-6 p-5 summary-list">
+    {leadership_and_activities.map(({ organization, role, date, description }) => (
+      <div class="activity-item">
+        <p class="date text-sm text-gray-500 dark:text-gray-400">{date}</p>
+        <h3 class="font-semibold text-lg text-gray-900 dark:text-white">
+          <span set:html={role}></span> at <span set:html={organization}></span>
+        </h3>
+        <ul class="summary-list list-disc pl-5 ml-2.5 mt-2 space-y-1 text-base text-gray-600 dark:text-gray-300">
+          {description.map((item) => (
+            <li set:html={item}></li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</Section>

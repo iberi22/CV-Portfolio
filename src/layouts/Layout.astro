@@ -1,0 +1,53 @@
+---
+import "../styles/global.css"
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<style is:global>
+	.harvard-theme {
+		--bg-color: #ffffff;
+		--text-color: #1a1a1a;
+		--text-secondary: #555555;
+		--border-color: #dddddd;
+		--harvard-crimson: #333333; /* Override for neutral color */
+		--harvard-light: #eeeeee;
+		--harvard-dark: #1a1a1a;
+	}
+
+	.harvard-theme a {
+		color: #1a1a1a;
+		text-decoration: underline;
+	}
+
+	.harvard-theme a:hover {
+		color: #555555;
+	}
+
+
+</style>
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+        <!-- Google Fonts and Icons -->
+		<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	</head>
+	<body>
+
+    <main class="container">
+      <slot />
+    </main>
+	</body>
+</html>

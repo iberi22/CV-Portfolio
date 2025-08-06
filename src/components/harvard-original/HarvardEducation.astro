@@ -1,0 +1,29 @@
+---
+import type { Education } from "@/env.d.ts"
+
+interface Props {
+  education: Education[]
+}
+
+const { education } = Astro.props
+---
+
+<div class="section-header">Education</div>
+
+{education.map(({ institution, degree, date, gpa, thesis, coursework, description }) => (
+  <div class="experience-item">
+    <div class="institution-header">
+      <div class="institution-name" set:html={institution}></div>
+      <div class="location-date">{date}</div>
+    </div>
+    <div class="degree-info" set:html={degree}></div>
+    {gpa && <div class="additional-info">GPA: {gpa}</div>}
+    {thesis && <div class="additional-info">Thesis: <span set:html={thesis}></span></div>}
+    {coursework && coursework.length > 0 && (
+      <div class="additional-info">
+        Relevant Coursework: <span set:html={coursework.join(", ")}></span>
+      </div>
+    )}
+    {description && <div class="additional-info" set:html={description}></div>}
+  </div>
+))}

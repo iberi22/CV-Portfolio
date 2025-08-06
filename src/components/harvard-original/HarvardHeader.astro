@@ -1,0 +1,22 @@
+---
+import type { PersonalInfo } from "@/env.d.ts"
+
+interface Props {
+  personal_info: PersonalInfo
+}
+
+const { personal_info } = Astro.props
+const { name, contact } = personal_info
+---
+
+<div class="header-section">
+  <div style="position: relative;">
+    <div class="name" set:html={name}></div>
+    <div class="contact-line">
+      {contact.location && <span set:html={`${contact.location} | `} />}
+      {contact.email && <span>{`${contact.email} | `}</span>}
+      {contact.phone && <span>{contact.phone}</span>}
+    </div>
+
+  </div>
+</div>

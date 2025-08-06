@@ -1,0 +1,37 @@
+---
+import type { SocialLink } from "../env.d.ts"
+
+interface Props {
+  links: SocialLink[]
+}
+
+const { links } = Astro.props
+---
+
+<style>
+    .social-links-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        font-size: 0.9rem;
+        justify-content: center;
+    }
+    .social-link-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+</style>
+
+<div class="section social-links">
+    <h2 class="section-title">Social & Professional Links</h2>
+    <div class="social-links-container">
+        {links.map(link => (
+            <div class="social-link-item">
+                <a href={link.url} target="_blank">
+                    <span class="material-icons" style="vertical-align: middle;">public</span> {link.platform}
+                </a>
+            </div>
+        ))}
+    </div>
+</div>

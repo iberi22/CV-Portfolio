@@ -1,0 +1,30 @@
+---
+import type { LeadershipAndActivities } from "@/env.d.ts"
+
+interface Props {
+  leadership_and_activities: LeadershipAndActivities[]
+}
+
+const { leadership_and_activities } = Astro.props
+---
+
+<div class="section-header">Leadership & Activities</div>
+
+{leadership_and_activities.map(({ organization, role, date, description }) => (
+  <div class="experience-item">
+    <div class="position-header">
+      <div class="organization-position" set:html={organization}></div>
+      <div class="location-date">{date}</div>
+    </div>
+    <div class="organization-position" set:html={role}></div>
+    {description && description.length > 0 && (
+      <div class="experience-description">
+        <ul>
+          {description.map((item) => (
+            <li set:html={item}></li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+))}
